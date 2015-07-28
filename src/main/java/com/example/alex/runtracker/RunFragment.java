@@ -1,5 +1,6 @@
 package com.example.alex.runtracker;
 
+import android.content.Intent;
 import android.support.v4.app.LoaderManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,7 +22,7 @@ import android.widget.Toast;
  * Created by Alex on 2015/7/20.
  */
 public class RunFragment extends Fragment {
-    private Button mStartButton, mStopButton;
+    private Button mStartButton, mStopButton, mMapButton;
     private TextView mStartedTextView, mLatitudeTextView, mLongitudeTextView,
             mAltitudeTextView, mDurationTextView;
 
@@ -88,7 +89,7 @@ public class RunFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+                             @Nullable final Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_run, container, false);
 
         mStartedTextView = (TextView) view.findViewById(R.id.run_startedTextView);
@@ -121,6 +122,16 @@ public class RunFragment extends Fragment {
                 updateUI();
             }
         });
+
+        mMapButton = (Button)view.findViewById(R.id.run_mapButton);
+        mMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), RunMapActivity.class);
+                i.putExtra(RunMapActivity.EXTRA_RUN_ID, mRun.getId());
+                startActivity(i);
+            }
+        });
         return view;
     }
 
@@ -151,6 +162,9 @@ public class RunFragment extends Fragment {
             mLatitudeTextView.setText(Double.toString(mLastLocation.getLatitude()));
             mLongitudeTextView.setText(Double.toString(mLastLocation.getLongitude()));
             mAltitudeTextView.setText(Double.toString(mLastLocation.getAltitude()));
+            mMapButton.setEnabled(true);
+        } else {
+            mMapButton.setEnabled(false);
         }
         mDurationTextView.setText(Run.formatDuration(durationSeconds));
         mStartButton.setEnabled(!started);
