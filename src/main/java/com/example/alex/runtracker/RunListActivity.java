@@ -1,6 +1,9 @@
 package com.example.alex.runtracker;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
+
+import com.baidu.mapapi.SDKInitializer;
 
 /**
  * 轨迹列表Activity
@@ -11,4 +14,10 @@ public class RunListActivity extends SingleFragmentActivity {
     protected Fragment createFragment() {
         return new RunListFragment();
     }
+
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        SDKInitializer.initialize(getApplicationContext());
+//    }
 }

@@ -1,5 +1,6 @@
 package com.example.alex.runtracker;
 
+import android.content.Intent;
 import android.support.v4.app.LoaderManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,7 +22,7 @@ import android.widget.Toast;
  * Created by Alex on 2015/7/20.
  */
 public class RunFragment extends Fragment {
-    private Button mStartButton, mStopButton;
+    private Button mStartButton, mStopButton, mBMapButton;
     private TextView mStartedTextView, mLatitudeTextView, mLongitudeTextView,
             mAltitudeTextView, mDurationTextView;
 
@@ -119,6 +120,15 @@ public class RunFragment extends Fragment {
 //                mRunManager.stopLocationUpdates();
                 mRunManager.stopRun();
                 updateUI();
+            }
+        });
+
+        mBMapButton = (Button)view.findViewById(R.id.map_button);
+        mBMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),BMapActivity.class);
+                startActivity(i);
             }
         });
         return view;
