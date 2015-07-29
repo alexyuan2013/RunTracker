@@ -1,6 +1,7 @@
 package com.example.alex.runtracker;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.location.Location;
 
 /**
@@ -17,4 +18,8 @@ public class LastLocationLoader extends DataLoader<Location> {
     public Location loadInBackground() {
         return RunManager.get(getContext()).getLastLocationForRun(mRunId);
     }
+
+
 }
+
+

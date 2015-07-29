@@ -137,6 +137,17 @@ public class RunDataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public LocationCursor queryLocationForRun(long runId){
+        Cursor wrapper = getReadableDatabase().query(TABLE_LOCATION,
+                null,
+                COLUMN_LOCATION_RUN_ID + " = ?",
+                new String[]{String.valueOf(runId)},
+                null,
+                null,
+                COLUMN_LOCATION_TIMESTAMP + " asc");
+        return new LocationCursor(wrapper);
+    }
+
     public static class LocationCursor extends CursorWrapper{
         public LocationCursor(Cursor c){
             super(c);
