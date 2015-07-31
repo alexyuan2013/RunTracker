@@ -104,7 +104,7 @@ public class RunDataBaseHelper extends SQLiteOpenHelper {
         return new RunCursor(wrapped);
     }
 
-    public LocationCursor queryLastLoacationForRun(long runId){
+    public LocationCursor queryLastLocationForRun(long runId){
         Cursor wrapped = getReadableDatabase().query(TABLE_LOCATION,
                 null,
                 COLUMN_LOCATION_RUN_ID + " = ?",
@@ -113,6 +113,22 @@ public class RunDataBaseHelper extends SQLiteOpenHelper {
                 null,
                 COLUMN_LOCATION_TIMESTAMP + " desc",
                 "1");
+        return new LocationCursor(wrapped);
+    }
+
+    /**
+     * 查询轨迹的所有位置点
+     * @param runId
+     * @return
+     */
+    public LocationCursor queryLocationsForRun(long runId){
+        Cursor wrapped = getReadableDatabase().query(TABLE_LOCATION,
+                null,
+                COLUMN_LOCATION_RUN_ID + " = ?",
+                new String[]{String.valueOf(runId)},
+                null,
+                null,
+                COLUMN_LOCATION_TIMESTAMP + " asc");
         return new LocationCursor(wrapped);
     }
 

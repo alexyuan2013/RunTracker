@@ -24,6 +24,7 @@ public class BMapActivity extends Activity {
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_bmap);
         mMapView = (MapView)findViewById(R.id.bMapView);
+        //getIntent().getLongExtra(AR)
     }
 
     @Override

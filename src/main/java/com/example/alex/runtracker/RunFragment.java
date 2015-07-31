@@ -127,7 +127,8 @@ public class RunFragment extends Fragment {
         mBMapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(),BMapActivity.class);
+                Intent i = new Intent(getActivity(),RunMapActivity.class);
+                i.putExtra(RunMapActivity.EXTRA_RUN_ID, mRun.getId());
                 startActivity(i);
             }
         });
@@ -161,6 +162,9 @@ public class RunFragment extends Fragment {
             mLatitudeTextView.setText(Double.toString(mLastLocation.getLatitude()));
             mLongitudeTextView.setText(Double.toString(mLastLocation.getLongitude()));
             mAltitudeTextView.setText(Double.toString(mLastLocation.getAltitude()));
+            mBMapButton.setEnabled(true);
+        } else {
+            mBMapButton.setEnabled(false);
         }
         mDurationTextView.setText(Run.formatDuration(durationSeconds));
         mStartButton.setEnabled(!started);

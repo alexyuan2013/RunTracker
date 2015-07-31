@@ -8,8 +8,6 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.util.Log;
 
-import java.util.prefs.PreferencesFactory;
-
 /**
  * 管理与LocationManager的通讯
  * Created by Alex on 2015/7/20.
@@ -185,13 +183,22 @@ public class RunManager {
     }
 
     /**
+     * 查询轨迹坐标点
+     * @param runId 轨迹id
+     * @return 坐标点游标
+     */
+    public RunDataBaseHelper.LocationCursor queryLocationsForRun(long runId){
+        return mHelper.queryLocationsForRun(runId);
+    }
+
+    /**
      * 获取轨迹的最近一个位置
      * @param runId 轨迹id
      * @return 位置Location
      */
     public Location getLastLocationForRun(long runId){
         Location location = null;
-        RunDataBaseHelper.LocationCursor cursor= mHelper.queryLastLoacationForRun(runId);
+        RunDataBaseHelper.LocationCursor cursor= mHelper.queryLastLocationForRun(runId);
         cursor.moveToFirst();
         if(!cursor.isAfterLast()){
             location = cursor.getLocation();
