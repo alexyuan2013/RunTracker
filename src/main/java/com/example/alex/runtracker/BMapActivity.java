@@ -12,6 +12,7 @@ import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.MapView;
 
 /**
+ * 百度地图测试实例
  * Created by Alex on 2015/7/28.
  */
 public class BMapActivity extends Activity {
